@@ -5,6 +5,111 @@
     <meta name="viewport" content="width=, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="assets/css/style.css" />
   </head>
-  <body></body>
+
+  <body>
+    <script src="assets/javascript/app.js"></script>
+
+    <div class="container">
+      <div class="row">
+        <h1 class="col-12" id="gameTitle">Space Trivia</h1>
+      </div>
+
+      <div class="row">
+        <div class="col-5"></div>
+        <button class="col-2" id="startButton">Start Game</button>
+        <div class="col-5"></div>
+      </div>
+
+      <div class="container" id="game-container">
+        <div class="row">
+          <div class="col-12" id="game-question">
+            <h4>
+              Question 1: What is the largest living organism visible from
+              Earth's orbit?
+            </h4>
+          </div>
+        </div>
+        <div class="row">
+          <form action="">
+            <input type="radio" name="answer" value="correct" />Great Barrier
+            Reef off Australia<br />
+            <input type="radio" name="answer" value="incorrect" />Rocky
+            Mountains<br />
+            <input type="radio" name="answer" value="incorrect" />Giant sequoias
+            in California<br />
+            <input type="radio" name="answer" value="incorrect" />Honey fungus
+            colony in Oregon
+          </form>
+        </div>
+
+        <div class="row">
+          <div class="col-12" id="game-question">
+            <h4>Question 2: What is the hottest planet in the solar system?</h4>
+          </div>
+        </div>
+        <div class="row">
+          <form action="">
+            <input type="radio" name="answer" value="incorrect" />Jupiter<br />
+            <input type="radio" name="answer" value="correct" />Venus<br />
+            <input type="radio" name="answer" value="incorrect" />Mars<br />
+            <input type="radio" name="answer" value="incorrect" />Mercury
+          </form>
+        </div>
+
+        <div class="row">
+          <div class="col-12" id="game-question">
+            <h4>Question 3: What planet as no moons?</h4>
+          </div>
+        </div>
+        <div class="row">
+          <form action="">
+            <input type="radio" name="answer" value="incorrect" />Earth<br />
+            <input type="radio" name="answer" value="incorrect" />Saturn<br />
+            <input type="radio" name="answer" value="correct" />Mercury<br />
+            <input type="radio" name="answer" value="incorrect" />Uranus
+          </form>
+        </div>
+
+        <div class="row">
+          <div class="col-12" id="game-question">
+            <h4>Question 4: What galaxy do we live in?</h4>
+          </div>
+        </div>
+        <div class="row">
+          <form action="">
+            <input type="radio" name="answer" value="incorrect" />Sombrero
+            Galaxy<br />
+            <input type="radio" name="answer" value="incorrect" />Whirlpool
+            Galaxy<br />
+            <input type="radio" name="answer" value="incorrect" />Andromeda
+            Galaxy<br />
+            <input type="radio" name="answer" value="correct" />Milky Way Galaxy
+          </form>
+        </div>
+
+        <div class="row">
+          <div class="col-12" id="game-question">
+            <h4>Question 5: Who was the first man to walk on the moon?</h4>
+          </div>
+        </div>
+        <div class="row">
+          <form action="">
+            <input type="radio" name="answer" value="incorrect" />Lance
+            Armstrong<br />
+            <input type="radio" name="answer" value="incorrect" />Buzz
+            Lightyear<br />
+            <input type="radio" name="answer" value="correct" />Neil
+            Armstrong<br />
+            <input type="radio" name="answer" value="incorrect" />James Irwin
+          </form>
+        </div>
+      </div>
+    </div>
+  </body>
 </html>
