@@ -1,42 +1,60 @@
-//Create array for game questions + answers
-var gameQuestions = {
-  questions: [
-    {
-      q1:
-        "Question 1: What is the largest living organism visible from Earth's orbit?",
-      q2: "Question 2: What is the hottest planet in the solar system?",
-      q3: "Question 3: What planet has no moons?",
-      q4: "Question 4: What galaxy do we live in?",
-      q5: "Question 5: Who was the first man to walk on the moon?"
-    }
-  ],
-  choices: [
-    {
-      c1: [
-        "Great Barrier Reef off Australia",
-        "Rocky Mountains",
-        "Giant sequoias in California",
-        "Honey fungus colony in Oregon"
-      ],
-      c2: ["Jupiter", "Venus", "Mars", "Mercury"],
-      c3: ["Earth", "Saturn", "Mercury", "Uranus"],
-      c4: [
-        "Sombrero Galaxy",
-        "Whirlpool Galaxy",
-        "Andromeda Galaxy",
-        "Milky Way Galaxy"
-      ],
-      c5: ["Lance Armstrong", "Buzz Lightyear", "Neil Armstrong", "James Irwin"]
-    }
-  ],
-  answers: {
-    a1: "Great Barrier Reef off Australia",
-    a2: "Venus",
-    a3: "Mercury",
-    a4: "Milky Way Galaxy",
-    a5: "Neil Armstrong"
+var gameQuestions = [
+  {
+    question:
+      "Question 1: What is the largest living organism visible from Earth's orbit?",
+    answers: {
+      A: "Great Barrier Reef",
+      B: "Rocky Mountains",
+      C: "Giant sequoias in California",
+      D: "Honey fungus colony in Oregon"
+    },
+    correctAnswer: "Great Barrier Reef off Australia"
+  },
+
+  {
+    question: "Question 2: What is the hottest planet in the solar system?",
+    answers: {
+      A: "Jupiter",
+      B: "Venus",
+      C: "Mars",
+      D: "Mercury"
+    },
+    correctAnswer: "Venus"
+  },
+
+  {
+    question: "Question 3: What planet has no moons?",
+    answers: {
+      A: "Earth",
+      B: "Saturn",
+      C: "Mercury",
+      D: "Uranus"
+    },
+    correctAnswer: "Mercury"
+  },
+
+  {
+    question: "Question 4: What galaxy do we live in?",
+    answers: {
+      A: "Sombrero Galaxy",
+      B: "Whirlpool Galaxy",
+      C: "Andromeda Galaxy",
+      D: "Milky Way Galaxy"
+    },
+    correctAnswer: "Milky Way Galaxy"
+  },
+
+  {
+    question: "Question 5: Who was the first man to walk on the moon?",
+    answers: {
+      A: "Lance Armstrong",
+      B: "Buzz Lightyear",
+      C: "Neil Armstrong",
+      D: "James Irwin"
+    },
+    correctAnswer: "Neil Armstrong"
   }
-};
+];
 
 //Set up game variables
 let correctAnswers = 0;
@@ -58,27 +76,37 @@ $(document).ready(function() {
   $("#game-container").hide();
   $("#score-container").hide();
   console.log("ready");
-});
 
-//Click button to start game
-$("#startButton").on("click", function() {
-  console.log("clicked");
-  startGame();
-  $("#start-container").hide();
-});
-//When game starts, timer counts down from 30 sec + questions are revealed
-function startGame() {
-  console.log("start");
-  $("#game-container").show();
-  displayQuestions();
-}
+  //Click button to start game
+  $("#startButton").on("click", function() {
+    $("#start-container").hide();
+    console.log("start");
+    $("#game-container").show();
+    displayQuestions();
+  });
 
-//Display game questions
-function displayQuestions() {
-  for (var i = 0; i > gameQuestions.length; i++) {
-    console.log(gameQuestions[i].questions[i]);
-    $("#game-question").text(gameQuestions[i].questions[i]);
+  //Display game questions
+  function displayQuestions() {
+    for (var i = 0; i < gameQuestions.length; i++) {
+      $("#game-question").append(
+        "<h4 id='question'>" +
+          gameQuestions[i].question +
+          "</h4>" +
+          "<input type='radio' id='answerChoices'>" +
+          gameQuestions[i].answers.A +
+          "<input type='radio' id='answerChoices'>" +
+          gameQuestions[i].answers.B +
+          "<input type='radio' id='answerChoices'>" +
+          gameQuestions[i].answers.C +
+          "<input type='radio' id='answerChoices'>" +
+          gameQuestions[i].answers.D
+      );
+    }
   }
-}
-//Answers are counted as "correct", "incorrect", or "unanswered"
-//When the timer ends, game over and the results are displayed
+
+  //When game starts, timer counts down from 30 sec
+  function startTimer() {}
+
+  //Answers are counted as "correct", "incorrect", or "unanswered"
+  //When the timer ends, game over and the results are displayed
+});
