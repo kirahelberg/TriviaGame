@@ -57,12 +57,14 @@ $("unanswered-questions").text(unansweredQuestions);
 $(document).ready(function() {
   $("#game-container").hide();
   $("#score-container").hide();
+  console.log("ready");
 });
 
 //Click button to start game
 $("#startButton").on("click", function() {
-  $("#start-container").hide();
+  console.log("clicked");
   startGame();
+  $("#start-container").hide();
 });
 //When game starts, timer counts down from 30 sec + questions are revealed
 function startGame() {
