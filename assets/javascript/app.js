@@ -46,12 +46,12 @@ let unansweredQuestions = 0;
 //Set up timer variables
 var clockRunning = false;
 var time = 0;
-document.getElementById("#countdownTimer").text("00:30");
+$("#countdownTimer").text("00:30");
 
 //Display the number of correct + incorrect answers and unanswered questions
-document.getElementById("correct-answers").text(correctAnswers);
-document.getElementById("incorrect-answers").text(incorrectAnswers);
-document.getElementById("unanswered-questions").text(unansweredQuestions);
+$("correct-answers").text(correctAnswers);
+$("incorrect-answers").text(incorrectAnswers);
+$("unanswered-questions").text(unansweredQuestions);
 
 //Hide game questions if the game has not started
 $(document).ready(function() {
@@ -60,12 +60,23 @@ $(document).ready(function() {
 });
 
 //Click button to start game
+$("#startButton").on("click", function() {
+  $("#start-container").hide();
+  startGame();
+});
+//When game starts, timer counts down from 30 sec + questions are revealed
 function startGame() {
-  //When game starts, timer counts down from 30 sec + questions are revealed
-  $("#startButton").click(function() {
-    $("#game-container").show();
-  });
+  console.log("start");
+  $("#game-container").show();
+  displayQuestions();
 }
 
+//Display game questions
+function displayQuestions() {
+  for (var i = 0; i > gameQuestions.length; i++) {
+    console.log(gameQuestions[i].questions[i]);
+    $("#game-question").text(gameQuestions[i].questions[i]);
+  }
+}
 //Answers are counted as "correct", "incorrect", or "unanswered"
 //When the timer ends, game over and the results are displayed
