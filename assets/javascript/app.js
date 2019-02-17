@@ -51,11 +51,6 @@ let correctAnswers = 0;
 let incorrectAnswers = 0;
 let unansweredQuestions = 0;
 
-//Display the number of correct + incorrect answers and unanswered questions
-$("correct-answers").text(correctAnswers);
-$("incorrect-answers").text(incorrectAnswers);
-$("unanswered-questions").text(unansweredQuestions);
-
 //Hide game questions if the game has not started
 $(document).ready(function() {
   $("#game-container").hide();
@@ -76,19 +71,36 @@ $(document).ready(function() {
         "<h4 id='question'>" +
           gameQuestions[i].question +
           "</h4>" +
-          "<input type='radio' id='answerChoices'>" +
+          "<input type='radio'  name='choice" +
+          i +
+          "' value='" +
           gameQuestions[i].answers[0] +
-          "<input type='radio' id='answerChoices'>" +
+          "' id='answerChoices'>" +
+          gameQuestions[i].answers[0] +
+          "<input type='radio'  name='choice" +
+          i +
+          "' value='" +
           gameQuestions[i].answers[1] +
-          "<input type='radio' id='answerChoices'>" +
+          "' id='answerChoices'>" +
+          gameQuestions[i].answers[1] +
+          "<input type='radio'  name='choice" +
+          i +
+          "' value='" +
           gameQuestions[i].answers[2] +
-          "<input type='radio' id='answerChoices'>" +
+          "' id='answerChoices'>" +
+          gameQuestions[i].answers[2] +
+          "<input type='radio'  name='choice" +
+          i +
+          "' value='" +
+          gameQuestions[i].answers[3] +
+          "' id='answerChoices'>" +
           gameQuestions[i].answers[3]
       );
     }
   }
 
   //When game starts, timer counts down from 30 sec
+  //If time ends before user submits answers, hide the questions and display the score
   function startTimer() {
     var timeLeft = 30;
     var intervalId = setInterval(countdown, 1000);
@@ -96,16 +108,33 @@ $(document).ready(function() {
       if (timeLeft === 0) {
         $("#game-container").hide();
         $("#score-container").show();
-      } else if (timeLeft >= 10) {
+      } else if (timeLeft > 0) {
         timeLeft--;
-        $("#countdownTimer").text("00:" + timeLeft);
-      } else if (timeLeft <= 9) {
-        timeLeft--;
-        $("#countdownTimer").text("00:0" + timeLeft);
+        $("#countdownTimer").text("Time remaining: " + timeLeft);
       }
     }
   }
+  //When the user submits answers, answers are counted as "correct", "incorrect", or "unanswered"
+  for (var i = 0; i < gameQuestions.length; i++) {
+    if (
+      $("input:radio[name='choice" + i + "']:checked").value() ===
+      gameQuestions[i].correctAnswer
+    ) {
+      correctAnswers++;
+    } else {
+      incorrectAnswers++;
+    }
+  }
 
-  //Answers are counted as "correct", "incorrect", or "unanswered"
-  //When the timer ends, game over and the results are displayed
+  $("#submitButton").on("click", function() {
+    $("#game-container").hide();
+    $("#score-container").show();
+    clearInterval(intervalId);
+  });
+  //Display the number of correct + incorrect answers and unanswered questions
+  $("#correct-answers").text("Correct Answers: " + correctAnswers);
+  $("#incorrect-answers").text("Correct Answers: " + incorrectAnswers);
+  $("#unanswered-questions").text(
+    "Correct Answers: " + 5 - correctAnswers - incorrectAnswers
+  );
 });
