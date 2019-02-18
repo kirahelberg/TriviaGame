@@ -60,9 +60,26 @@ $(document).ready(function() {
   $("#startButton").on("click", function() {
     $("#start-container").hide();
     $("#game-container").show();
-    displayQuestions();
     startTimer();
+    displayQuestions();
+    countAnswers();
   });
+
+  //When game starts, timer counts down from 30 sec
+  //If time ends before user submits answers, hide the questions and display the score
+  function startTimer() {
+    var timeLeft = 30;
+    var intervalId = setInterval(countdown, 1000);
+    function countdown() {
+      if (timeLeft === 0) {
+        $("#game-container").hide();
+        $("#score-container").show();
+      } else if (timeLeft > 0) {
+        timeLeft--;
+        $("#countdownTimer").text("Time remaining: " + timeLeft);
+      }
+    }
+  }
 
   //Display game questions
   function displayQuestions() {
@@ -99,42 +116,37 @@ $(document).ready(function() {
     }
   }
 
-  //When game starts, timer counts down from 30 sec
-  //If time ends before user submits answers, hide the questions and display the score
-  function startTimer() {
-    var timeLeft = 30;
-    var intervalId = setInterval(countdown, 1000);
-    function countdown() {
-      if (timeLeft === 0) {
-        $("#game-container").hide();
-        $("#score-container").show();
-      } else if (timeLeft > 0) {
-        timeLeft--;
-        $("#countdownTimer").text("Time remaining: " + timeLeft);
+  //When the user submits answers, answers are counted as "correct", "incorrect", or "unanswered"
+  function countAnswers() {
+    for (var i = 0; i < gameQuestions.length; i++) {
+      if (
+        $("input:radio[name='choice" + i + "']:checked").value() ===
+        gameQuestions[i].correctAnswer
+      ) {
+        correctAnswers++;
+      } else if (
+        $("input:radio[name='choice" + i + "']:checked").value() !=
+        gameQuestions[i].correctAnswer
+      ) {
+        incorrectAnswers++;
+      } else {
+        unansweredQuestions++;
       }
     }
   }
-  //When the user submits answers, answers are counted as "correct", "incorrect", or "unanswered"
-  for (var i = 0; i < gameQuestions.length; i++) {
-    if (
-      $("input:radio[name='choice" + i + "']:checked").value() ===
-      gameQuestions[i].correctAnswer
-    ) {
-      correctAnswers++;
-    } else {
-      incorrectAnswers++;
-    }
-  }
 
+  //Click button to submit answers
   $("#submitButton").on("click", function() {
     $("#game-container").hide();
     $("#score-container").show();
+    //Display the number of correct + incorrect answers and unanswered questions
     clearInterval(intervalId);
   });
-  //Display the number of correct + incorrect answers and unanswered questions
+
+  //Display answers
   $("#correct-answers").text("Correct Answers: " + correctAnswers);
   $("#incorrect-answers").text("Correct Answers: " + incorrectAnswers);
   $("#unanswered-questions").text(
-    "Correct Answers: " + 5 - correctAnswers - incorrectAnswers
+    "Unanswered Questions: " + unansweredQuestions
   );
 });

@@ -1,3 +1,45 @@
+body {
+  background-image: url("../images/galaxy.jpg");
+  background-repeat: repeat-y;
+  background-size: 100%;
+}
+
+#game {
+  background: rgba(255, 255, 255, 0.7);
+  margin-top: 50px;
+  padding: 20px;
+}
+
+#gameTitle {
+  text-align: center;
+  margin: 10px 0px 20px 0px;
+  padding: 10px;
+}
+
+#start-container {
+  margin: 10px 0px 20px 0px;
+}
+
+#submit-container {
+  margin: 20px 0px 10px 0px;
+}
+
+#countdownTimer {
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+  color: rgb(14, 1, 129);
+}
+
+#question {
+  font-size: 22px;
+  margin: 20px 0px 5px 0px;
+}
+
 #answerChoices {
-  margin: 5px;
+  margin: 5px 5px 5px 15px;
+}
+
+#score-container {
+  text-align: center;
 }
